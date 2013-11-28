@@ -27,7 +27,7 @@ public class Main {
 		//InterruptedException异常，捕获它
 		try {
 			t.join();
-			t2.join();
+			t2.join(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
