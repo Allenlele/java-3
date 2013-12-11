@@ -11,6 +11,10 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Buffer {
 	
+	/*
+	 * 6、该类有6个属性
+	 */
+	
 	/**
 	 * 6.1、存储共享数据
 	 */
