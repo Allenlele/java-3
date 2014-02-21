@@ -27,10 +27,11 @@ public class FactorialCalculator implements Callable<Integer>{
 	 * 4、返回属性number的价乖
 	 */
 	public Integer call() throws Exception {
-		//
+		//5、首先，创建并初始化方法内部变量
 		int result = 1;
 		
-		//
+		//6、如果number的值是1或0，返回1，否则，计算机number的阶乘，两个乘法之间，为教育性目的，
+		//使线程休眠20毫秒
 		if((number == 0) || (number == 1)){
 			result = 1;
 		}else{
@@ -39,8 +40,9 @@ public class FactorialCalculator implements Callable<Integer>{
 				TimeUnit.MILLISECONDS.sleep(20);
 			}
 		}
-		
+		//7、控制台输出操作结果
 		System.out.printf("%s: %d\n",Thread.currentThread().getName(),result);
+		//8、返回操作结果
 		return result;
 	}
 	

@@ -1,5 +1,10 @@
 package com.wds.java.concurrency.chapter4.first;
 
+/**
+ * 15、最后实现主类及main()方法
+ * @author wds
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {
