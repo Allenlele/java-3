@@ -10,9 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>mappingUserValue complex typeµÄ Java Àà¡£
- * 
- * <p>ÒÔÏÂÄ£Ê½Æ¬¶ÎÖ¸¶¨°üº¬ÔÚ´ËÀàÖĞµÄÔ¤ÆÚÄÚÈİ¡£
+ * <p>mappingUserValue complex type Java à¡£
  * 
  * <pre>
  * &lt;complexType name="mappingUserValue">

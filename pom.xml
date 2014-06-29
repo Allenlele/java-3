@@ -9,15 +9,23 @@
 	<url>http://maven.apache.org</url>
 	
 	<properties>
-		<mina-properties>2.0.7</mina-properties>
+		<mina-version>2.0.7</mina-version>
 		<logback-version>1.0.13</logback-version>
 		<commons-lang-version>2.6</commons-lang-version>
 		<commons-logging-version>1.1.3</commons-logging-version>
 		<cxf.version>3.0.0-milestone1</cxf.version>
 		<org.springframework.version>4.0.0.RELEASE</org.springframework.version>
+		<commons-collections-version>3.2.1</commons-collections-version>
 	</properties>
 	
 	<dependencies>
+	
+		<dependency>
+  			<groupId>org.codehaus.jackson</groupId>
+ 			<artifactId>jackson-jaxrs</artifactId>
+  			<version>1.9.0</version>
+		</dependency>
+	
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -25,12 +33,26 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<dependency>
+		  <groupId>org.testng</groupId>
+		  <artifactId>testng</artifactId>
+		  <version>6.1.1</version>
+		  <scope>test</scope>
+		</dependency>
+		
+		
 		<!-- commons -->
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>${commons-lang-version}</version>
 		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>${commons-collections-version}</version>
+		</dependency>
+            
 		
 		<!--  
 		<dependency>
@@ -73,42 +95,60 @@
 			<version>1.0</version>
 		</dependency>
 		
-		<!-- Mina 
+		<!-- Mina -->
 		<dependency>
 			<groupId>org.apache.mina</groupId>
 			<artifactId>mina-core</artifactId>
-			<version>${mina-properties}</version>
+			<version>${mina-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.mina</groupId>
 			<artifactId>mina-transport-apr</artifactId>
-			<version>${mina-properties}</version>
+			<version>${mina-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.mina</groupId>
 			<artifactId>mina-statemachine</artifactId>
-			<version>${mina-properties}</version>
+			<version>${mina-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.mina</groupId>
 			<artifactId>mina-integration-xbean</artifactId>
-			<version>${mina-properties}</version>
+			<version>${mina-version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.mina</groupId>
+			<artifactId>mina-integration-ognl</artifactId>
+			<version>${mina-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.mina</groupId>
 			<artifactId>mina-integration-jmx</artifactId>
-			<version>${mina-properties}</version>
+			<version>${mina-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.mina</groupId>
 			<artifactId>mina-integration-beans</artifactId>
-			<version>${mina-properties}</version>
+			<version>${mina-version}</version>
+			<!--  <exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+      				<artifactId>spring</artifactId>
+				</exclusion>
+			
+			</exclusions>-->
 		</dependency>
 		<dependency>
 			<groupId>org.apache.mina</groupId>
 			<artifactId>mina-filter-compression</artifactId>
-			<version>${mina-properties}</version>
-		</dependency>-->
+			<version>${mina-version}</version>
+		</dependency>
 		
 		<!-- Spring -->
 		<dependency>
@@ -165,7 +205,17 @@
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http-hc</artifactId>
             <version>${cxf.version}</version>
         </dependency>
         <dependency>
@@ -173,10 +223,29 @@
             <artifactId>cxf-core</artifactId>
             <version>${cxf.version}</version>
         </dependency>
+		<dependency>
+		  <groupId>org.apache.cxf</groupId>
+		  <artifactId>cxf-rt-rs-client</artifactId>
+		  <version>${cxf.version}</version>
+		</dependency>
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+	        <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpasyncclient</artifactId>
+		    <version>4.0</version>
+        </dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
+			<plugin>
+	    		<groupId>org.apache.felix</groupId>
+	   			<artifactId>maven-bundle-plugin</artifactId>
+	   			<extensions>true</extensions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -198,6 +267,13 @@
 			</plugin>
 		</plugins>
 		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
 			<resource>
 				<directory>src/main/java</directory>
 				<includes>

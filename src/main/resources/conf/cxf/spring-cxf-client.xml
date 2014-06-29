@@ -7,7 +7,7 @@
            http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
            
 	<import resource="classpath:META-INF/cxf/cxf.xml"/>
-	
+	<!-- 第四个服务的客户端 -->
 	<jaxws:client 
 		id="securityService" 
 		address="http://localhost:8080/web/services/SecurityService"
@@ -24,7 +24,7 @@
 		</jaxws:inInterceptors>
 	</jaxws:client>
 	
-	
+	<!-- 第三个服务的客户端 -->
 	<jaxws:client 
 		id="userServiceOne" 
 		address="http://localhost:8080/web/services/userService"
@@ -37,6 +37,7 @@
 		</jaxws:outInterceptors>
 	</jaxws:client>
 	
+	<!-- 第二个服务的客户端 -->
 	<jaxws:client 
 		id="userServiceTwo" 
 		address="http://localhost:8080/web/services/userService2"

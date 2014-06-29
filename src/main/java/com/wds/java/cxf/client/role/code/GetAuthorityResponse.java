@@ -8,9 +8,8 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>getAuthorityResponse complex type的 Java 类。
+ * <p>getAuthorityResponse complex type锟斤拷 Java 锟洁。
  * 
- * <p>以下模式片段指定包含在此类中的预期内容。
  * 
  * <pre>
  * &lt;complexType name="getAuthorityResponse">
@@ -36,7 +35,6 @@ public class GetAuthorityResponse {
     protected MappingUserValue _return;
 
     /**
-     * 获取return属性的值。
      * 
      * @return
      *     possible object is
@@ -48,7 +46,6 @@ public class GetAuthorityResponse {
     }
 
     /**
-     * 设置return属性的值。
      * 
      * @param value
      *     allowed object is
